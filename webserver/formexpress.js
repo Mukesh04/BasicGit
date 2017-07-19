@@ -1,8 +1,8 @@
 var express = require('express');
 var app = express();
 
-app.use('/',express.static(__dirname + '/../public'));
-
+console.log(__dirname + '/../../student')
+app.use('/',express.static(__dirname + '/../../student'));
 app.get('/process_get', function(req, res){
     response = {
         first_name:req.query.first_name,

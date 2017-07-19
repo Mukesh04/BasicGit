@@ -1,11 +1,15 @@
-<html>
-<body>
-
-<form action = "http://127.0.0.1:8081/process_get" method = "GET">
-    First Name: <input type = "text" name = "first_name">  <br>
-    Last Name: <input type = "text" name = "last_name">
-    <input type = "submit" value = "Submit">
-</form>
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/1.0.3/angular-ui-router.js"></script>
+    <script src="routing.js"></script>
+</head>
+<body ng-app="routing-app">
+   <a ui-sref="firstMessage">First Message</a>
+   <div ui-view>
+   </div>
 </body>
 </html>
