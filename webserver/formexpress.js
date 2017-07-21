@@ -30,7 +30,7 @@ var userSchema = new Schema({
 var User = mongoose.model('User', userSchema);
 
 console.log(__dirname + '/../../student');
-app.use('/',express.static(__dirname + '/../public'));
+app.use('/',express.static(__dirname + '/../../contact-list'));
 
 app.get('/student', function(req, res) {
     var response = {
