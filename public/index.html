@@ -1,114 +1,122 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="ContactApp">
 <head>
     <meta charset="UTF-8">
-    <title>Student details</title>
+    <title>Contact List</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.5/angular.min.js"></script>
     <script src="app.js"></script>
+    <script src="appConfig.service.js"></script>
+    <script src="appname.service.js"></script>
+    <script src="contact.controller.js"></script>
+    <script src="header.controller.js"></script>
+    <script src="contactdata.service.js"></script>
 </head>
 <body>
-<div class="container" ng-app="myApp" ng-controller="myCtrl" >
-    <div class="row" style="margin-top: 20px;">
-        <h1 style="width:500px; margin: 0 auto;">Add Student Details</h1>
-        <div style="width:500px; margin: 0 auto; margin-top: 20px; border: 1px solid #ddd; padding: 15px;">
-            <form>
-                <div class="form-group">
-                    <label for="name">Name:</label>
-                    <input type="text" class="form-control" id="name" placeholder="Name" ng-model="name">
-                </div>
-                <div class="form-group">
-                    <label for="age">Age:</label>
-                    <input type="number" class="form-control" id="age" placeholder="Age" ng-model="age">
-                </div>
-                <div class="form-group">
-                    <label for="dob">DOB:</label>
-                    <input type="text" class="form-control" id="dob" placeholder="DOB" ng-model="dob">
-                </div>
-                <div class="form-group">
-                    <label for="dept">Department:</label>
-                    <input type="text" class="form-control" id="dept" placeholder="Department" ng-model="dept">
-                </div>
-                <button ng-click="addItem()" class="btn btn-primary">Submit</button>
-                <!--<button ng-show="editMode" ng-click="updateItem()" class="btn btn-primary">Update Student</button> -->
-                <!--<button ng-click="viewItem()" class="btn btn-primary">View</button> <br/> -->
-                <div>{{errorMsg}}</div>
-            </form>
-        </div>
-       </div>
+  <div ng-controller="HeaderCtrl as head">
+      <h1>{{head.appTittle}}</h1>
+  </div>
 
-    <div class="row" style="margin-top: 50px;">
-        <h1 style="width:500px; margin-bottom: 10px;">Student Details</h1>
-        <div class="col-md-8">
-         <table class="table table-striped">
-             <tr>
-                 <th>ID</th>
-                 <th>Name</th>
-                 <th>Age</th>
-                 <th>DOB</th>
-                 <th>Department</th>
-                 <th>Action</th>
-             </tr>
-             <tr ng-repeat="student in studentArray" >
-                 <td>{{$index+1}}</td>
-                 <td>{{student.name}}</td>
-                 <td>{{student.age}}</td>
-                 <td>{{student.dob}}</td>
-                 <td>{{student.dept}}</td>
-                 <td><button ng-click="removeItem($index)">Delete</button>
-                     <button ng-click="selectStudent($index)">View and Edit</button></td>
-             </tr>
-         </table>
-        </div>
-
-        <div class="col-md-4">
-            <ol>
-                <li><span ng-hide="editMode">{{selectedStudent.name}}</span> <input type="text" ng-show="editMode" ng-model="selectedStudent.name"></li>
-                <li><span ng-hide="editMode">{{selectedStudent.age}}</span> <input type="number" ng-show="editMode" ng-model="selectedStudent.age"></li>
-                <li><span ng-hide="editMode">{{selectedStudent.dob}}</span> <input type="text"  ng-show="editMode" ng-model="selectedStudent.dob"></li>
-                <li><span ng-hide="editMode">{{selectedStudent.dept}}</span> <input type="text" ng-show="editMode"  ng-model="selectedStudent.dept"></li>
-            </ol>
-            <span style="padding-left: 35px;"><button ng-hide="editMode" ng-click="triggerMode()">Edit</button>
-                    <button ng-show="editMode" ng-click="triggerMode()">Save</button></span>
-        </div>
-
-    </div>
-
-    <br> <br>  <br> <br>
-
-    <div class="formSection" style="margin:0 auto;width: 50%;">
-        <h1 style="text-align: center;color:gray">Form Submission</h1>
-        <br> <br>
-        <form action = "http://127.0.0.1:8081/student" method = "GET">
-            Name : <input type = "text" class="form-control" name = "name">  <br> <br>
-            Username : <input type = "text" class="form-control" name = "username">  <br> <br>
-            Password :<input type = "text" class="form-control" name = "password">  <br> <br>
-            Address : <input type="text" class="form-control" name="address">  <br> <br>
-            <input type = "submit" value = "Submit" class="btn btn-danger">
-        </form>
-
-        <div class="table-responsive">
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Username</th>
-                        <th>Password</th>
-                        <th>Address</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr ng-repeat="student in students">
-                        <td>{{student.name}}</td>
-                        <td>{{student.username}}</td>
-                        <td>{{student.password}}</td>
-                        <td>{{student.address}}</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-</div>
+  <div class="container"  ng-controller="ContactCtrl as ctrl" >
+      <div class="row">
+      <div class="col-md-6">
+        <ul class="list-group">
+          <li class="list-group-item" ng-repeat="contact in ctrl.contacts">
+            <span>{{contact.name.first + " " + contact.name.last}}</span>
+            <span style="float:right;"><button ng-click="ctrl.delete($index)">Delete</button>
+                <button ng-click="ctrl.selectContact($index)">View and Edit</button></span>
+        </li>
+        </ul>
+      </div>
+        <div class="col-md-6">
+          <div class="media">
+              <div class="media-left">
+                  <a href="#">
+                     <img ng-src="{{ctrl.selectedContact.picture.large}}"></img>
+                  </a>
+              </div>
+              <div class="media-body">
+                  <h4 class="media-heading"><strong>{{ctrl.selectedContact.name.first + " " + ctrl.selectedContact.name.last}}</strong></h4>
+                  <button ng-hide="ctrl.editMode" ng-click="ctrl.toggleEditMode()">Edit</button>
+                  <button ng-show="ctrl.editMode" ng-click="ctrl.toggleEditMode()">Update</button>
+                  <div>
+                      <p>
+                         <h6><strong>Location</strong></h6>
+                      </p>
+                      <p>
+                          <span>Street:</span>
+                          <span ng-hide="ctrl.editMode">{{ctrl.selectedContact.location.street}}</span>
+                          <span><input type="text" ng-model="ctrl.selectedContact.location.street" ng-show="ctrl.editMode" /></span>
+                      </p>
+                      <p>
+                          <span>City:</span>
+                          <span ng-hide="ctrl.editMode">{{ctrl.selectedContact.location.city}}</span>
+                          <span><input type="text" ng-model="ctrl.selectedContact.location.city" ng-show="ctrl.editMode" /></span>
+                      </p>
+                      <p>
+                          <span>State:</span>
+                          <span ng-hide="ctrl.editMode">{{ctrl.selectedContact.location.state}}</span>
+                          <span><input type="text" ng-model="ctrl.selectedContact.location.state" ng-show="ctrl.editMode" /></span>
+                      </p>
+                  </div>
+                  <div>
+                      <p>
+                      <h6><strong>Phone</strong></h6>
+                      </p>
+                      <p>
+                          <span ng-hide="ctrl.editMode">{{ctrl.selectedContact.cell}}</span>
+                          <span><input type="text" ng-model="ctrl.selectedContact.cell" ng-show="ctrl.editMode" /></span>
+                      </p>
+                  </div>
+              </div>
+          </div>
+           </div>
+      </div>
+      <div class="row">
+          <h2>Add Contact Details</h2>
+          <div style="padding: 10px; border: 1px solid #ddd; float: left; width: 500px;">
+              <form class="form-horizontal">
+                  <div class="form-group" >
+                      <label class="col-sm-4 control-label">First Name</label>
+                      <div class="col-sm-8"><input type="text" class="form-control" ng-model="first_name" /></div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-4 control-label">Last Name</label>
+                      <div class="col-sm-8"><input type="text" class="form-control" ng-model="last_name" /></div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-4 control-label">Gender</label>
+                      <div class="col-sm-8">
+                          <label class="radio-inline"><input type="radio" ng-model="gender" value="Male">Male
+                          </label>
+                          <label class="radio-inline"><input type="radio" ng-model="gender" value="Female">Female
+                          </label>
+                      </div>
+                  </div>
+                  <div class="form-group">
+                      <h4 class="col-sm-4 control-label">Location</h4>
+                      <div class="col-sm-8"></div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-4 control-label">Street</label>
+                      <div class="col-sm-8"><input type="text" class="form-control" ng-model="street" /></div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-4 control-label">City</label>
+                      <div class="col-sm-8"><input type="text" class="form-control" ng-model="city" /></div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-4 control-label">State</label>
+                      <div class="col-sm-8"><input type="text" class="form-control" ng-model="state" /></div>
+                  </div>
+                  <div class="form-group">
+                      <label class="col-sm-4 control-label">Phone</label>
+                      <div class="col-sm-8"><input type="number" class="form-control" ng-model="phone" /></div>
+                  </div>
+                  <button type="submit" class="btn btn-primary" ng-click="add()">Add</button>
+              </form>
+          </div>
+      </div>
+  </div>
 </body>
 </html>

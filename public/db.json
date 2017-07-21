@@ -1,0 +1,106 @@
+{
+  "contacts": [
+    {
+      "gender":"male",
+      "name":{
+        "first":"gauthier",
+        "last":"jean"
+      },
+      "location":{
+        "street":"2012 rue de l'abbé-patureau",
+        "city":"senarclens",
+        "state":"valais"
+      },
+      "cell":"(163)-074-1540",
+      "id":6 ,
+      "picture":{
+        "large":"https://randomuser.me/api/portraits/men/61.jpg"
+      }
+    },
+    {
+      "gender":"female",
+      "name":{
+        "first":"laurine",
+        "last":"leroux"
+      },
+      "location":{
+        "street":"6873 place de l'abbé-basset",
+        "city":"argenteuil",
+        "state":"finistère"
+      },
+      "cell":"06-46-34-15-52",
+      "id": 1,
+      "picture":{
+        "large":"https://randomuser.me/api/portraits/women/95.jpg"
+      }
+    },
+    {
+      "gender":"male",
+      "name":{
+        "first":"khalid",
+        "last":"spoolder"
+      },
+      "location":{
+        "street":"9276 maliebaan",
+        "city":"enkhuizen",
+        "state":"utrecht"
+      },
+      "cell":"(061)-997-4000",
+      "id": 2,
+      "picture": {
+        "large": "https://randomuser.me/api/portraits/men/45.jpg"
+      }
+    },
+    {
+      "gender":"male",
+      "name":{
+        "first":"leon",
+        "last":"cole"
+      },
+      "location":{
+        "street":"1490 smokey ln",
+        "city":"cupertino",
+        "state":"south dakota"
+      },
+      "cell":"(285)-319-6116",
+      "id": 3,
+      "picture":{
+        "large":"https://randomuser.me/api/portraits/men/46.jpg"
+      }
+    },
+    {
+      "gender":"male",
+      "name":{
+        "first":"niilo",
+        "last":"wirta"
+      },
+      "location":{
+        "street":"8356 itsenäisyydenkatu",
+        "city":"eura",
+        "state":"northern savonia"
+      },
+      "cell":"049-656-54-77",
+      "id": 4,
+      "picture":{
+        "large":"https://randomuser.me/api/portraits/men/72.jpg"
+      }
+    },
+    {
+      "gender":"female",
+      "name":{
+        "first":"drúscila",
+        "last":"da costa"
+      },
+      "location":{
+        "street":"4803 rua duque de caxias ",
+        "city":"jacareí",
+        "state":"pará"
+      },
+      "cell":"(81) 8198-5142",
+      "id": 5,
+      "picture":{
+        "large":"https://randomuser.me/api/portraits/women/18.jpg"
+      }
+    }
+  ]
+}
