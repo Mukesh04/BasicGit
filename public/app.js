@@ -68,8 +68,19 @@ app.controller("myCtrl", myCtrl);
         $scope.errorMsg = "Student details  Removed Successfully";
     }
 
-    $scope.triggerMode = function(){
+    $scope.triggerMode = function() {
         $scope.editMode = !$scope.editMode;
     }
 
 }
+
+app.service('studentData', ['$scope', '$http', function($scope, $http){
+    $http({
+        method : "Post",
+        url : ""
+    }).then(function mySuccess(response) {
+        $scope.myWelcome = response.data;
+    }, function myError(response) {
+        $scope.myWelcome = response.statusText;
+    });
+}])
